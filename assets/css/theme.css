@@ -20,7 +20,7 @@
   --color-bubbles: #c3fcb1;
   --color-darkLiver: #4F4F4F;
   --color-oxford: #031F42;
-  --color-cobalt: #084FA8;
+  --color-cobalt: #0A0F42;
   --color-antiFlash: #F2F1F6;
   --color-crayola: #2582F6;
   --color-platinum: #E6E6E6;
@@ -28,6 +28,7 @@
   --color-boss: #1a1a1a;
   --color-snow: #e6eded;
   --color-peachy: #E2725B;
+  --color-slateBlue: #636EDF;
   
   /* Screen sizes */
   --breakpoint-sm: 480px;
