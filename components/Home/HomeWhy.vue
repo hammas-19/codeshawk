@@ -1,10 +1,10 @@
 <template>
   <section class="">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex justify-between gap-12 lg:gap-16">
+      <div class="flex sm:flex-row flex-col justify-between gap-12 lg:gap-16">
         <!-- Left Side - Small Indicator -->
         <div class="flex-shrink-0 pt-2 sticky top-0 h-fit">
-          <div class="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-sm border">
+          <div class="flex items-center space-x-2 bg-white px-4 py-2 rounded-full shadow-sm border w-fit">
             <div class="w-2 h-2 bg-slateBlue rounded-full"></div>
             <span class="text-boss font-medium text-sm tracking-wide">Who we are</span>
           </div>

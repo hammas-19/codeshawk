@@ -5,5 +5,7 @@
   <HomeDiffrence />
   <HomeServices />
   <HomeStats />
+  <HomeTeam />
+  <TheTestimonials />
 </div>
 </template>

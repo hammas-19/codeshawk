@@ -1,6 +1,6 @@
 <template>
   <div class="m-2">
-    <footer class="bg-cobalt text-white md:rounded-4xl rounded-2xl">
+    <footer class="bg-cobalt text-white md:rounded-4xl rounded-2xl bg-[url('/FooterObject.png')] bg-no-repeat bg-bottom-right">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <!-- Left Section -->
@@ -102,9 +102,9 @@
             </div>
 
             <!-- Social Links -->
-            <div class="flex items-center space-x-6">
+            <div class="flex items-center md:space-x-6 space-x-2 ">
               <span class="text-gray-400">Follow Us</span>
-              <div class="flex items-center space-x-4">
+              <div class="flex items-center md:space-x-4 space-x-2 flex-wrap">
                 <a href="https://facebook.com" target="_blank" rel="noopener noreferrer"
                   class="text-gray-400 hover:text-white transition-all duration-200 hover:scale-110">
                   Facebook

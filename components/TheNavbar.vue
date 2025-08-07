@@ -3,13 +3,14 @@
   <nav class="relative z-40 transition-all duration-300"
     :class="scrolled ? 'bg-white/90 backdrop-blur-lg border-b border-gray-100 shadow-lg' : 'bg-transparent'">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex items-center justify-between h-16">
+      <div class="flex items-center justify-between h-14 sm:h-16">
         <!-- Logo -->
         <div class="flex items-center">
           <NuxtLink to="/" class="flex items-center space-x-2 group">
-            <span class="text-xl font-bold transition-colors duration-200"
+            <span class="text-lg sm:text-xl font-bold transition-colors duration-200"
               :class="scrolled ? 'text-gray-800 group-hover:text-blue-600' : 'text-white group-hover:text-blue-200'">
-              <svg width="198" height="31" viewBox="0 0 198 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg width="140" height="22" sm:width="198" sm:height="31" viewBox="0 0 198 31" fill="none"
+                xmlns="http://www.w3.org/2000/svg" class="h-6 sm:h-8 w-auto">
                 <g clip-path="url(#clip0_5_1933)">
                   <g clip-path="url(#clip1_5_1933)">
                     <g clip-path="url(#clip2_5_1933)">
@@ -34,22 +35,26 @@
                   </clipPath>
                 </defs>
               </svg>
-
             </span>
           </NuxtLink>
         </div>
 
-        <!-- CTA Button & Mobile Menu Toggle -->
-        <div class="flex items-center space-x-4">
-          <ThemeBtn />
+        <!-- Desktop CTA & Mobile Menu Toggle -->
+        <div class="flex items-center space-x-2 sm:space-x-4">
+          <!-- Theme Button - Hidden on mobile -->
+          <div class="hidden sm:block">
+            <ThemeBtn />
+          </div>
 
           <!-- Mobile menu button -->
-          <button @click="toggleMobileMenu" class="md:hidden p-2 rounded-lg transition-all duration-200 hover:scale-110"
+          <button @click="toggleMobileMenu"
+            class="md:hidden p-2 rounded-lg transition-all duration-200 hover:scale-110 touch-manipulation"
             :class="scrolled ? 'hover:bg-gray-100 text-gray-600' : 'hover:bg-white/10 text-white'">
-            <svg v-if="!showMobileMenu" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-if="!showMobileMenu" class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor"
+              viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
-            <svg v-else class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg v-else class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
             </svg>
           </button>
@@ -59,19 +64,20 @@
 
     <!-- Mobile Navigation -->
     <div v-show="showMobileMenu"
-      class="md:hidden bg-white border-t border-gray-100 shadow-lg transition-all duration-300"
+      class="md:hidden bg-white border-t border-gray-100 shadow-lg transition-all duration-300 max-h-screen overflow-y-auto"
       :class="showMobileMenu ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-4'">
-      <div class="px-4 py-4 space-y-2">
+      <div class="px-4 py-4 space-y-1">
+        <!-- Main Navigation Links -->
         <NuxtLink v-for="item in navigationItems" :key="item.name" :to="item.href"
-          class="block px-4 py-3 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-200 hover:translate-x-2"
+          class="block px-4 py-3 text-base font-medium text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-lg transition-all duration-200 touch-manipulation"
           :class="{ 'text-blue-600 bg-blue-50': $route.path === item.href }" @click="showMobileMenu = false">
           {{ item.name }}
         </NuxtLink>
 
         <!-- Mobile Services -->
-        <div class="px-4 py-3">
+        <div class="px-4 py-2">
           <button @click="showMobileServices = !showMobileServices"
-            class="flex items-center justify-between w-full text-gray-700 hover:text-blue-600 transition-colors duration-200">
+            class="flex items-center justify-between w-full text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 py-2 touch-manipulation">
             <span>Services</span>
             <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': showMobileServices }"
               fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -79,25 +85,39 @@
             </svg>
           </button>
 
-          <div v-show="showMobileServices" class="mt-3 space-y-2 transition-all duration-200"
+          <div v-show="showMobileServices" class="mt-2 space-y-1 transition-all duration-200"
             :class="showMobileServices ? 'opacity-100' : 'opacity-0'">
             <NuxtLink v-for="service in services" :key="service.name" :to="service.href"
-              class="flex items-center space-x-3 px-4 py-2 rounded-lg hover:bg-gray-50 transition-all duration-200 hover:translate-x-2"
+              class="flex items-center space-x-3 px-3 py-3 rounded-lg hover:bg-gray-50 transition-all duration-200 touch-manipulation"
               @click="showMobileMenu = false">
-              <svg class="w-5 h-5 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="service.iconPath" />
-              </svg>
-              <span class="text-sm text-gray-700">{{ service.name }}</span>
+              <div
+                class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
+                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="service.iconPath" />
+                </svg>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-sm font-medium text-gray-900">{{ service.name }}</h3>
+                <p class="text-xs text-gray-500 truncate">{{ service.description }}</p>
+              </div>
             </NuxtLink>
+          </div>
+        </div>
+
+        <!-- Mobile Theme Button -->
+        <div class="px-4 py-2 sm:hidden">
+          <div class="flex items-center justify-between">
+            <span class="text-base font-medium text-gray-700">Theme</span>
+            <ThemeBtn />
           </div>
         </div>
 
         <!-- Mobile CTA -->
         <div class="px-4 pt-4 border-t border-gray-100">
           <NuxtLink to="/contact"
-            class="flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 hover:scale-105"
+            class="flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg hover:from-blue-600 hover:to-purple-700 transition-all duration-200 text-base font-medium touch-manipulation"
             @click="showMobileMenu = false">
-            <span class="text-sm font-medium">Get Started</span>
+            <span>Get Started</span>
             <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -107,8 +127,8 @@
     </div>
   </nav>
 
-  <!-- Fixed Center Navigation (Desktop only) -->
-  <div class="hidden md:block fixed top-2 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300">
+  <!-- Fixed Center Navigation (Desktop and Tablet only) -->
+  <div class="hidden lg:block fixed top-2 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-300">
     <div class="flex items-center space-x-1 px-4 py-2 rounded-full transition-all duration-300"
       :class="scrolled ? 'bg-white shadow-lg' : 'bg-white/0 backdrop-blur-lg'">
       <NuxtLink v-for="item in navigationItems" :key="item.name" :to="item.href"
@@ -117,7 +137,7 @@
             ? (scrolled ? 'text-blue-600' : 'text-black bg-white/20')
             : (scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-black/80 hover:text-clearBlue')
         ]">
-        <span class="relative z-10">{{ item.name }}</span>
+        <span class="relative z-10 text-sm lg:text-base">{{ item.name }}</span>
         <div class="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-200"
           :class="scrolled ? 'bg-blue-50' : 'bg-white/10'"></div>
         <div v-if="$route.path === item.href"
@@ -133,7 +153,7 @@
             ? (scrolled ? 'text-blue-600' : 'text-white')
             : (scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-black/80 hover:text-clearBlue')
         ]">
-        <span>Services</span>
+        <span class="text-sm lg:text-base">Services</span>
         <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': showServicesDropdown }"
           fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -165,6 +185,22 @@
       </div>
     </div>
   </div>
+
+  <!-- Mobile Bottom Navigation (Alternative option - commented out) -->
+  <!-- 
+  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
+    <div class="grid grid-cols-4 gap-1 p-2">
+      <NuxtLink v-for="item in navigationItems.slice(0, 4)" :key="item.name" :to="item.href"
+        class="flex flex-col items-center py-2 px-1 rounded-lg transition-colors duration-200"
+        :class="$route.path === item.href ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-blue-600'">
+        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
+        </svg>
+        <span class="text-xs font-medium">{{ item.name }}</span>
+      </NuxtLink>
+    </div>
+  </div>
+  -->
 </template>
 
 <script setup>
@@ -233,6 +269,11 @@ const toggleMobileMenu = () => {
   showMobileMenu.value = !showMobileMenu.value
   if (showMobileMenu.value) {
     showMobileServices.value = false
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = 'hidden'
+  } else {
+    // Restore body scroll
+    document.body.style.overflow = ''
   }
 }
 
@@ -241,13 +282,25 @@ const handleScroll = () => {
   scrolled.value = window.scrollY > 10
 }
 
+// Handle click outside to close dropdowns
+const handleClickOutside = (event) => {
+  const target = event.target
+  if (!target.closest('[data-dropdown="services"]')) {
+    showServicesDropdown.value = false
+  }
+}
+
 // Lifecycle hooks
 onMounted(() => {
   window.addEventListener('scroll', handleScroll)
+  document.addEventListener('click', handleClickOutside)
 })
 
 onUnmounted(() => {
   window.removeEventListener('scroll', handleScroll)
+  document.removeEventListener('click', handleClickOutside)
+  // Ensure body scroll is restored
+  document.body.style.overflow = ''
 })
 
 // Watch for route changes to close mobile menu
@@ -255,5 +308,6 @@ watch(() => useRoute().path, () => {
   showMobileMenu.value = false
   showServicesDropdown.value = false
   showMobileServices.value = false
+  document.body.style.overflow = ''
 })
 </script>
