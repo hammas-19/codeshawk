@@ -43,7 +43,7 @@
         <div class="flex items-center space-x-2 sm:space-x-4">
           <!-- Theme Button - Hidden on mobile -->
           <div class="hidden sm:block">
-            <ThemeBtn />
+            <ThemeBtn class="border border-[#DFDEE5]" />
           </div>
 
           <!-- Mobile menu button -->
@@ -92,9 +92,7 @@
               @click="showMobileMenu = false">
               <div
                 class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="service.iconPath" />
-                </svg>
+                <span class="text-white text-sm">{{ service.icon }}</span>
               </div>
               <div class="flex-1 min-w-0">
                 <h3 class="text-sm font-medium text-gray-900">{{ service.name }}</h3>
@@ -134,7 +132,7 @@
       <NuxtLink v-for="item in navigationItems" :key="item.name" :to="item.href"
         class="relative px-4 py-2 transition-all duration-200 group rounded-lg hover:-translate-y-0.5" :class="[
           $route.path === item.href
-            ? (scrolled ? 'text-blue-600' : 'text-black bg-white/20')
+            ? (scrolled ? 'text-blue-600' : 'text-black bg-white/30 backdrop-blur-2xl')
             : (scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-black/80 hover:text-clearBlue')
         ]">
         <span class="relative z-10 text-sm lg:text-base">{{ item.name }}</span>
@@ -142,68 +140,54 @@
           :class="scrolled ? 'bg-blue-50' : 'bg-white/10'"></div>
         <div v-if="$route.path === item.href"
           class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 rounded-full transition-colors duration-200"
-          :class="scrolled ? 'bg-blue-600' : 'bg-white'"></div>
+          :class="scrolled ? 'bg-blue-600' : 'bg-slateBlue'"></div>
       </NuxtLink>
 
       <!-- Services Dropdown Button -->
-      <button @click="showServicesDropdown = !showServicesDropdown"
-        class="flex items-center space-x-1 px-4 py-2 rounded-lg transition-all duration-200 group hover:-translate-y-0.5"
-        :class="[
-          showServicesDropdown
-            ? (scrolled ? 'text-blue-600' : 'text-white')
-            : (scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-black/80 hover:text-clearBlue')
-        ]">
-        <span class="text-sm lg:text-base">Services</span>
-        <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': showServicesDropdown }"
-          fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-        </svg>
-      </button>
-    </div>
+      <div class="relative" data-dropdown="services">
+        <button @click="showServicesDropdown = !showServicesDropdown"
+          class="flex items-center space-x-1 px-4 py-2 rounded-lg transition-all duration-200 group hover:-translate-y-0.5"
+          :class="[
+            showServicesDropdown
+              ? (scrolled ? 'text-blue-600' : 'text-clearBlue')
+              : (scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-black/80 hover:text-clearBlue')
+          ]">
+          <span class="text-sm lg:text-base">Services</span>
+          <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': showServicesDropdown }"
+            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+          </svg>
+        </button>
 
-    <!-- Services Dropdown Menu -->
-    <div v-show="showServicesDropdown"
-      class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-100 py-4 z-50 transition-all duration-200"
-      :class="showServicesDropdown ? 'scale-100 opacity-100' : 'scale-95 opacity-0'">
-      <div class="grid grid-cols-1 gap-1 px-2">
-        <NuxtLink v-for="service in services" :key="service.name" :to="service.href"
-          class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all duration-200 group hover:translate-x-1"
-          @click="showServicesDropdown = false">
-          <div
-            class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-            <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" :d="service.iconPath" />
-            </svg>
+        <!-- Services Dropdown Menu -->
+        <div v-show="showServicesDropdown"
+          class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-100 py-4 z-50 transition-all duration-200"
+          :class="showServicesDropdown ? 'scale-100 opacity-100' : 'scale-95 opacity-0'">
+          <div class="grid grid-cols-1 gap-1 px-2">
+            <NuxtLink v-for="service in services" :key="service.name" :to="service.href"
+              class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all duration-200 group hover:translate-x-1"
+              @click="showServicesDropdown = false">
+              <div
+                class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                <span class="text-white text-lg">{{ service.icon }}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
+                  {{ service.name }}
+                </h3>
+                <p class="text-xs text-gray-500 truncate">{{ service.description }}</p>
+              </div>
+            </NuxtLink>
           </div>
-          <div class="flex-1 min-w-0">
-            <h3 class="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-              {{ service.name }}
-            </h3>
-            <p class="text-xs text-gray-500 truncate">{{ service.description }}</p>
-          </div>
-        </NuxtLink>
+        </div>
       </div>
     </div>
   </div>
-
-  <!-- Mobile Bottom Navigation (Alternative option - commented out) -->
-  <!-- 
-  <div class="md:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 z-40">
-    <div class="grid grid-cols-4 gap-1 p-2">
-      <NuxtLink v-for="item in navigationItems.slice(0, 4)" :key="item.name" :to="item.href"
-        class="flex flex-col items-center py-2 px-1 rounded-lg transition-colors duration-200"
-        :class="$route.path === item.href ? 'text-blue-600 bg-blue-50' : 'text-gray-600 hover:text-blue-600'">
-        <svg class="w-5 h-5 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2H5a2 2 0 00-2 2z" />
-        </svg>
-        <span class="text-xs font-medium">{{ item.name }}</span>
-      </NuxtLink>
-    </div>
-  </div>
-  -->
 </template>
 
 <script setup>
+const route = useRoute()
+
 // Reactive state
 const showMobileMenu = ref(false)
 const showServicesDropdown = ref(false)
@@ -218,48 +202,48 @@ const navigationItems = [
   { name: 'Contact Us', href: '/contact' }
 ]
 
-// Services data with SVG paths
+// Services data with emojis
 const services = [
   {
     name: 'UI/UX Design',
     description: 'Beautiful, user-centered design solutions',
-    iconPath: 'M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM7 3V1M15 3h6v18l-3-3-3 3V3z',
+    icon: '🎨',
     href: '/services/ui-ux'
   },
   {
     name: 'Web Development',
     description: 'Custom web applications and websites',
-    iconPath: 'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    icon: '💻',
     href: '/services/web-development'
   },
   {
     name: 'Mobile Development',
     description: 'Native and cross-platform mobile apps',
-    iconPath: 'M12 18h.01M8 21h8a1 1 0 001-1V4a1 1 0 00-1-1H8a1 1 0 00-1 1v16a1 1 0 001 1z',
+    icon: '📱',
     href: '/services/mobile-development'
   },
   {
     name: 'Content Writing',
     description: 'Engaging content for your audience',
-    iconPath: 'M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z',
+    icon: '✍️',
     href: '/services/content-writing'
   },
   {
     name: 'HRM/CRM Solutions',
     description: 'Custom management systems',
-    iconPath: 'M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a4 4 0 11-8 0 4 4 0 018 0z',
+    icon: '👥',
     href: '/services/hrm-crm'
   },
   {
     name: 'Database Solutions',
     description: 'Scalable database architecture',
-    iconPath: 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
+    icon: '🗄️',
     href: '/services/database'
   },
   {
     name: 'Digital Marketing',
     description: 'Grow your online presence',
-    iconPath: 'M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z',
+    icon: '📈',
     href: '/services/digital-marketing'
   }
 ]
@@ -304,7 +288,7 @@ onUnmounted(() => {
 })
 
 // Watch for route changes to close mobile menu
-watch(() => useRoute().path, () => {
+watch(() => route.path, () => {
   showMobileMenu.value = false
   showServicesDropdown.value = false
   showMobileServices.value = false

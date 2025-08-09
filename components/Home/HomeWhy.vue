@@ -13,7 +13,7 @@
         <!-- Right Side - Content with Max Width -->
         <div class="flex-1 max-w-3xl">
           <!-- Main Heading -->
-          <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight mb-8">
+          <h2 class="text-4xl md:text-5xl lg:text-6xl font-medium text-gray-900 leading-tight mb-8">
             Why CodesHawk?
           </h2>
 
