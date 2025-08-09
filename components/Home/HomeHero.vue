@@ -1,5 +1,5 @@
 <template>
-  <div class="pt-10">
+  <div class="pt-10 overflow-hidden">
     <div class="def-container lg:def-padding-full">
       <h1 class="md:text-8xl text-4xl text-boss max-w-5xl w-full">
         <Motion v-for="(word, index) in headingLetters" :key="index" class="inline-block mr-2"

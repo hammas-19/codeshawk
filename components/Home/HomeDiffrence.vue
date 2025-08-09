@@ -2,11 +2,14 @@
   <section class="py-16 md:py-24">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <!-- Section Header -->
-      <div class="flex justify-between items-center mb-12">
+      <div class="flex justify-between md:items-center mb-12 md:flex-row flex-col-reverse gap-2">
         <h2 class="text-4xl md:text-5xl text-gray-900">
           Key Differentiators
         </h2>
-        <ThemeBtn :text="'Learn More'" />
+        <div>
+          <ThemeBtn class="md:block hidden" :text="'Learn More'" />
+          <ThemeBtn class="md:hidden block self-end place-self-end" :small="true" :text="'Learn More'" />
+        </div>
       </div>
 
       <!-- Cards Grid -->
@@ -25,20 +28,26 @@
           </div>
         </div>
         <!-- Card 4: Free Advice -->
-        <div class="border bg-slateBlue inverted-radius flex items-end justify-center relative z-0">
-          <img src="/CTA/CTA1.png" class="max-w-[280px] h-fit px-4 relative z-0" alt="">
-            <div class="border rounded-2xl border-[#DFDEE5] absolute right-0 z-20">
-              <button class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group"
-                type="button">
-                <div
-                  class="bg-[#636EDF] rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">
-                  <Icon name="material-symbols:arrow-right-alt-rounded" class="text-white " />
-                </div>
-                <p class="translate-x-2 ml-4 text-base">Get Started</p>
-              </button>
+         <div class="h-full relative">
+          <ThemeBtn :small="true" class="absolute bottom-0 right-0" />
+           <div class=" bg-slateBlue inverted-radius flex items-end justify-center relative z-0">
+            <div class="mt-5 absolute inset-0 w-full flex flex-col md:px-5 px-4">
+              <span class="flex items-center gap-2 text-white">
+                ✦
+                <span class="text-xs">
+                  Need Help
+                </span>
+              </span>
+              <span class="md:text-3xl text-lg  text-white">
+                <span class="relative z-10">
+                Free advice. 
+                </span>
+                Book a callback
+              </span>
             </div>
-
-        </div>
+             <img src="/CTA/CTA1.png" class="max-w-[320px] h-fit px-8 mt-10 relative z-0" alt="">
+            </div>
+          </div>
       </div>
 
       <!-- Mobile CTA -->
