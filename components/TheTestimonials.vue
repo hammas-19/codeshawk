@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-100 py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <section class="bg-[#ffffff34] backdrop-blur-lg py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
     <!-- Large Background Text -->
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
       <h1

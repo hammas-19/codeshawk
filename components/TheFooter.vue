@@ -1,7 +1,7 @@
 <template>
   <div class="m-2">
     <footer class="bg-cobalt text-white md:rounded-4xl rounded-2xl bg-[url('/FooterObject.png')] bg-no-repeat bg-bottom-right">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-50">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16">
           <!-- Left Section -->
           <div class="space-y-8">

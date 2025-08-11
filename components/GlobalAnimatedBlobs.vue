@@ -1,4 +1,4 @@
-<!-- GlobalAnimatedBlobs.vue - Single instance that changes colors -->
+<!-- GlobalAnimatedBlobs.vue - Updated for your components -->
 <script setup>
 import { motion, useMotionValue, useSpring } from 'motion-v'
 import { onMounted, ref, computed } from 'vue'
@@ -7,7 +7,7 @@ import { onMounted, ref, computed } from 'vue'
 const props = defineProps({
   activeSection: {
     type: String,
-    default: 'section1'
+    default: 'homeHero'
   }
 })
 
@@ -22,29 +22,41 @@ const blob1Y = useSpring(mouseY, { stiffness: 20, damping: 30 })
 const blob2X = useSpring(mouseX, { stiffness: 15, damping: 35 })
 const blob2Y = useSpring(mouseY, { stiffness: 15, damping: 35 })
 
-// Color configurations for different sections
+// 🎨 COLOR CONFIGURATIONS FOR YOUR COMPONENTS 🎨
 const sectionColors = {
-  section1: {
-    blob1: ['#cdf68b', '#fffff2', '#000000'],
-    blob2: ['#000000', '#cdf68b', '#8b0000']
+  homeHero: {
+    blob1: ['#bbb3ff', '#9385ff', '#6652ff'],      // Pink to blue gradient (energetic hero)
+    blob2: ['#ffe7d1', '#ffbe85', '#ff8a24']       // Orange to purple gradient
   },
-  section2: {
-    blob1: ['#0066ff', '#003d99', '#001a4d'],
-    blob2: ['#ffff00', '#ffd700', '#ff8c00']
+  homeWhy: {
+    blob1: ['#e6e6e6', '#cccccc', '#969696'],      // Cyan to blue (trust/reliability)
+    blob2: ['#b9cfcf', '#a1bebf', '#76a1a2']       // Green gradient (growth/positive)
   },
-  section3: {
-    blob1: ['#8a2be2', '#9932cc', '#4b0082'],
-    blob2: ['#ff69b4', '#ff1493', '#c71585']
+  homeDifference: {
+    blob1: ['#bbb3ff', '#9385ff', '#6652ff'],      // Red gradient (bold difference)
+    blob2: ['#ffa502', '#ff6348', '#ff4757']       // Orange to red gradient
   },
-  section4: {
-    blob1: ['#00ff88', '#00cc66', '#009944'],
-    blob2: ['#00ffcc', '#00ddaa', '#00bb88']
+  homeServices: {
+    blob1: ['#7b68ee', '#9370db', '#6a5acd'],      // Purple gradient (professional)
+    blob2: ['#20bf6b', '#26de81', '#2ed573']       // Green gradient (services/solutions)
+  },
+  homeStats: {
+    blob1: ['#f39c12', '#e67e22', '#d35400'],      // Orange gradient (achievement)
+    blob2: ['#3498db', '#2980b9', '#2471a3']       // Blue gradient (data/trust)
+  },
+  homeTeam: {
+    blob1: ['#e74c3c', '#c0392b', '#a93226'],      // Red gradient (passion/energy)
+    blob2: ['#9b59b6', '#8e44ad', '#7d3c98']       // Purple gradient (creativity)
+  },
+  testimonials: {
+    blob1: ['#2ecc71', '#27ae60', '#229954'],      // Green gradient (positive feedback)
+    blob2: ['#e6e6e6', '#cccccc', '#969696']       // Yellow to orange (happiness/satisfaction)
   }
 }
 
 // Computed styles that change based on active section
 const blob1Style = computed(() => {
-  const colors = sectionColors[props.activeSection]?.blob1 || sectionColors.section1.blob1
+  const colors = sectionColors[props.activeSection]?.blob1 || sectionColors.homeHero.blob1
   return {
     width: '500px',
     height: '500px',
@@ -55,7 +67,7 @@ const blob1Style = computed(() => {
 })
 
 const blob2Style = computed(() => {
-  const colors = sectionColors[props.activeSection]?.blob2 || sectionColors.section1.blob2
+  const colors = sectionColors[props.activeSection]?.blob2 || sectionColors.homeHero.blob2
   return {
     width: '400px',
     height: '400px',
