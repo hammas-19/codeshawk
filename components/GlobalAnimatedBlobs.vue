@@ -49,8 +49,8 @@ const sectionColors = {
     blob2: ['#9b59b6', '#8e44ad', '#7d3c98']       // Purple gradient (creativity)
   },
   testimonials: {
-    blob1: ['#2ecc71', '#27ae60', '#229954'],      // Green gradient (positive feedback)
-    blob2: ['#e6e6e6', '#cccccc', '#969696']       // Yellow to orange (happiness/satisfaction)
+    blob1: ['#e74c3c', '#c0392b', '#a93226'],      // Red gradient (passion/energy)
+    blob2: ['#9b59b6', '#8e44ad', '#7d3c98']        // Yellow to orange (happiness/satisfaction)
   }
 }
 

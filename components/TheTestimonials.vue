@@ -1,9 +1,17 @@
 <template>
-  <section class="bg-[#ffffff34] backdrop-blur-lg py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+  <section class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+    <img src="/Hero/cylinder.webp" class="absolute md:top-1/5 top-2/3 right-1/8 lg:h-40 w-fit md:h-20 h-16"
+      alt="" :style="{
+        transition: `all ${bounceEase}`,
+        transform: polyElementVisible ?
+          'translateX(0) translateY(0) rotate(0deg) scale(1)' :
+          'translateX(-100px) translateY(100px) rotate(180deg) scale(0)',
+        opacity: polyElementVisible ? 1 : 0
+      }" @mouseenter="onHover" @mouseleave="onLeave" @click="triggerPolyElementAnimation">
     <!-- Large Background Text -->
     <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
       <h1
-        class="text-[8rem] sm:text-[12rem] lg:text-[16rem] xl:text-[20rem] font-bold text-white/60 select-none leading-none">
+        class="text-[4rem] sm:text-[7rem] lg:text-[10rem] xl:text-[16rem] font-bold text-white/60 select-none leading-none">
         testimonials
       </h1>
     </div>
@@ -50,7 +58,7 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { spring } from 'motion-v'
 
 // Testimonials data
 const testimonials = ref([
@@ -121,9 +129,57 @@ const stopAutoPlay = () => {
     autoPlayInterval = null;
   }
 };
+const polyElementVisible = ref(false)
+const isHovered = ref(false)
 
+// Spring easing for smooth bouncy animation
+const bounceEase = spring(0.6, 0.7)
+const hoverEase = spring(0.8, 0.9)
+
+// Interactive handlers (same for both images)
+const onHover = (event) => {
+  isHovered.value = true
+
+  // Get element and cursor positions
+  const rect = event.target.getBoundingClientRect()
+  const elementCenterX = rect.left + rect.width / 2
+  const elementCenterY = rect.top + rect.height / 2
+  const cursorX = event.clientX
+  const cursorY = event.clientY
+
+  // Calculate direction from cursor to element center
+  const deltaX = elementCenterX - cursorX
+  const deltaY = elementCenterY - cursorY
+
+  // Normalize and scale the movement (move away from cursor)
+  const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY)
+  const moveDistance = 30 // How far to move away
+  const moveX = (deltaX / distance) * moveDistance
+  const moveY = (deltaY / distance) * moveDistance
+
+  event.target.style.transition = `transform ${hoverEase}`
+  event.target.style.transform = `translateX(${moveX}px) translateY(${moveY}px) rotate(15deg) scale(1.05)`
+}
+
+const onLeave = (event) => {
+  isHovered.value = false
+  event.target.style.transition = `transform ${bounceEase}`
+  event.target.style.transform = 'translateX(0) translateY(0) rotate(0deg) scale(1)'
+}
+
+
+const triggerPolyElementAnimation = () => {
+  console.log('Poly element clicked!')
+  polyElementVisible.value = false
+  setTimeout(() => {
+    polyElementVisible.value = true
+  }, 300)
+}
 // Lifecycle
 onMounted(() => {
+  setTimeout(() => {
+    polyElementVisible.value = true
+  }, 1200)
   nextTick(() => {
     startAutoPlay();
   });

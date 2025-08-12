@@ -23,11 +23,11 @@
     <section ref="homeStats" data-section="homeStats">
       <HomeStats />
     </section>
-
+    
     <section ref="homeTeam" data-section="homeTeam">
       <HomeTeam />
     </section>
-
+    
     <section ref="testimonials" data-section="testimonials">
       <TheTestimonials />
     </section>

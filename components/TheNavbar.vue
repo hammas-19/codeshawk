@@ -1,7 +1,7 @@
 <template>
   <!-- Top navbar with logo and CTA (scrolls away) -->
   <nav class="relative z-40 transition-all duration-300"
-    :class="scrolled ? 'bg-white/90 backdrop-blur-lg border-b border-gray-100 shadow-lg' : 'bg-transparent'">
+    :class="scrolled ? 'bg-white/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-14 sm:h-16">
         <!-- Logo -->

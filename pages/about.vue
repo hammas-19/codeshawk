@@ -6,7 +6,7 @@
     ]" :show-cta="true" cta-text="Get Started" cta-link="/contact" />
     <AboutStory @cta-clicked="handleBrochureDownload" />
     <AboutJourney />
-    <MotionTest />
+    <!-- <MotionTest /> -->
   </div>
 </template>
 <script setup>
