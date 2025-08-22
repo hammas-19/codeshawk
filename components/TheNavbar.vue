@@ -74,34 +74,6 @@
           {{ item.name }}
         </NuxtLink>
 
-        <!-- Mobile Services -->
-        <div class="px-4 py-2">
-          <button @click="showMobileServices = !showMobileServices"
-            class="flex items-center justify-between w-full text-base font-medium text-gray-700 hover:text-blue-600 transition-colors duration-200 py-2 touch-manipulation">
-            <span>Services</span>
-            <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': showMobileServices }"
-              fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-            </svg>
-          </button>
-
-          <div v-show="showMobileServices" class="mt-2 space-y-1 transition-all duration-200"
-            :class="showMobileServices ? 'opacity-100' : 'opacity-0'">
-            <NuxtLink v-for="service in services" :key="service.name" :to="service.href"
-              class="flex items-center space-x-3 px-3 py-3 rounded-lg hover:bg-gray-50 transition-all duration-200 touch-manipulation"
-              @click="showMobileMenu = false">
-              <div
-                class="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center">
-                <span class="text-white text-sm">{{ service.icon }}</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-sm font-medium text-gray-900">{{ service.name }}</h3>
-                <p class="text-xs text-gray-500 truncate">{{ service.description }}</p>
-              </div>
-            </NuxtLink>
-          </div>
-        </div>
-
         <!-- Mobile Theme Button -->
         <div class="px-4 py-2 sm:hidden">
           <div class="flex items-center justify-between">
@@ -142,45 +114,6 @@
           class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 rounded-full transition-colors duration-200"
           :class="scrolled ? 'bg-blue-600' : 'bg-slateBlue'"></div>
       </NuxtLink>
-
-      <!-- Services Dropdown Button -->
-      <div class="relative" data-dropdown="services">
-        <button @click="showServicesDropdown = !showServicesDropdown"
-          class="flex items-center space-x-1 px-4 py-2 rounded-lg transition-all duration-200 group hover:-translate-y-0.5"
-          :class="[
-            showServicesDropdown
-              ? (scrolled ? 'text-blue-600' : 'text-clearBlue')
-              : (scrolled ? 'text-gray-700 hover:text-blue-600' : 'text-black/80 hover:text-clearBlue')
-          ]">
-          <span class="text-sm lg:text-base">Services</span>
-          <svg class="w-4 h-4 transition-transform duration-200" :class="{ 'rotate-180': showServicesDropdown }"
-            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-          </svg>
-        </button>
-
-        <!-- Services Dropdown Menu -->
-        <div v-show="showServicesDropdown"
-          class="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-80 bg-white rounded-xl shadow-xl border border-gray-100 py-4 z-50 transition-all duration-200"
-          :class="showServicesDropdown ? 'scale-100 opacity-100' : 'scale-95 opacity-0'">
-          <div class="grid grid-cols-1 gap-1 px-2">
-            <NuxtLink v-for="service in services" :key="service.name" :to="service.href"
-              class="flex items-center space-x-3 px-4 py-3 rounded-lg hover:bg-gray-50 transition-all duration-200 group hover:translate-x-1"
-              @click="showServicesDropdown = false">
-              <div
-                class="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
-                <span class="text-white text-lg">{{ service.icon }}</span>
-              </div>
-              <div class="flex-1 min-w-0">
-                <h3 class="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-                  {{ service.name }}
-                </h3>
-                <p class="text-xs text-gray-500 truncate">{{ service.description }}</p>
-              </div>
-            </NuxtLink>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -190,69 +123,21 @@ const route = useRoute()
 
 // Reactive state
 const showMobileMenu = ref(false)
-const showServicesDropdown = ref(false)
-const showMobileServices = ref(false)
 const scrolled = ref(false)
 
-// Navigation items
+// Navigation items - Services added as normal link
 const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
+  { name: 'Services', href: '/services' },
   { name: 'Case Studies', href: '/case-studies' },
   { name: 'Contact Us', href: '/contact' }
-]
-
-// Services data with emojis
-const services = [
-  {
-    name: 'UI/UX Design',
-    description: 'Beautiful, user-centered design solutions',
-    icon: '🎨',
-    href: '/services/ui-ux'
-  },
-  {
-    name: 'Web Development',
-    description: 'Custom web applications and websites',
-    icon: '💻',
-    href: '/services/web-development'
-  },
-  {
-    name: 'Mobile Development',
-    description: 'Native and cross-platform mobile apps',
-    icon: '📱',
-    href: '/services/mobile-development'
-  },
-  {
-    name: 'Content Writing',
-    description: 'Engaging content for your audience',
-    icon: '✍️',
-    href: '/services/content-writing'
-  },
-  {
-    name: 'HRM/CRM Solutions',
-    description: 'Custom management systems',
-    icon: '👥',
-    href: '/services/hrm-crm'
-  },
-  {
-    name: 'Database Solutions',
-    description: 'Scalable database architecture',
-    icon: '🗄️',
-    href: '/services/database'
-  },
-  {
-    name: 'Digital Marketing',
-    description: 'Grow your online presence',
-    icon: '📈',
-    href: '/services/digital-marketing'
-  }
 ]
 
 // Methods
 const toggleMobileMenu = () => {
   showMobileMenu.value = !showMobileMenu.value
   if (showMobileMenu.value) {
-    showMobileServices.value = false
     // Prevent body scroll when menu is open
     document.body.style.overflow = 'hidden'
   } else {
@@ -268,10 +153,7 @@ const handleScroll = () => {
 
 // Handle click outside to close dropdowns
 const handleClickOutside = (event) => {
-  const target = event.target
-  if (!target.closest('[data-dropdown="services"]')) {
-    showServicesDropdown.value = false
-  }
+  // No dropdowns to close anymore
 }
 
 // Lifecycle hooks
@@ -290,8 +172,6 @@ onUnmounted(() => {
 // Watch for route changes to close mobile menu
 watch(() => route.path, () => {
   showMobileMenu.value = false
-  showServicesDropdown.value = false
-  showMobileServices.value = false
   document.body.style.overflow = ''
 })
 </script>

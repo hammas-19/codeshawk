@@ -1,5 +1,5 @@
 <template>
-  <section class="bg-gray-50 py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
+  <section class="py-16 lg:py-24 px-4 sm:px-6 lg:px-8">
     <div class="w-full mx-auto">
       <div class="grid grid-cols-1 lg:grid-cols-8 md:grid-cols-6 gap-8 items-start ">
         <!-- Left Column - Image and Badge -->
