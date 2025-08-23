@@ -10,7 +10,7 @@
       <p class="translate-x-2 ml-4 text-xs text-left font-normal" :class="props.whiteText ? 'text-white' : 'text-black'">{{ props.text }}</p>
     </NuxtLink>
     <NuxtLink v-else :to="props.to"
-      class="bg-white text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group flex items-center justify-center"
+      class="text-center w-48 rounded-2xl h-14 relative text-black text-xl font-semibold group flex items-center justify-center" :class="props.whiteBg ? 'bg-white' : 'bg-transparent'"
       type="button">
       <div
         class="bg-[#636EDF] rounded-xl h-12 w-1/4 flex items-center justify-center absolute left-1 top-[4px] group-hover:w-[184px] z-10 duration-500">

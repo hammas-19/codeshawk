@@ -35,7 +35,7 @@
           <span class=" font-bold text-black md:text-4xl text-sm">2k+</span>
           <h3 class="text-black md:text-lg text-xs font-medium md:leading-5 leading-3 flex flex-col "><span>Satisfied</span> <span>Customes</span></h3>
         </div>
-        <img src="/Hero/heroBg.gif" class="inverted-radius w-full lg:h-full h-[calc(100vh-400px)] lg:max-h-[600px] object-cover" alt="">
+        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgDyNRsYXtClB-DtesRzAL1jmnonqkfJUzmPWFFbEu6vts9o973u3M_lZ21Af-2BImkteF0plrV0uIATpdB_OO5avWbZXDGrABUBVahnAzSO1_7Nnk9nkIrIV0qSmXG04FvTRrv8mkuyJZxOY_EZ-X7YYn3JDzF28uy0H85NVJlLKjK0hJzm_Kz49FzsEI=w640-h360" class="inverted-radius w-full lg:h-full h-[calc(100vh-400px)] lg:max-h-[600px] object-cover" alt="">
         <!-- <video autoplay loop
           class="inverted-radius border-2 w-full lg:h-full h-[calc(100vh-400px)] lg:max-h-[600px] object-cover">
           <source src="/vdv.mp4" type="video/mp4">

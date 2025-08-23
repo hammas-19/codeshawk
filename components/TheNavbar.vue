@@ -1,6 +1,6 @@
 <template>
   <!-- Top navbar with logo and CTA (scrolls away) -->
-  <nav class="relative z-40 transition-all duration-300"
+  <nav class="relative z-40 transition-all duration-300 pt-2.5"
     :class="scrolled ? 'bg-white/90 backdrop-blur-lg shadow-lg' : 'bg-transparent'">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="flex items-center justify-between h-14 sm:h-16">
@@ -43,7 +43,7 @@
         <div class="flex items-center space-x-2 sm:space-x-4">
           <!-- Theme Button - Hidden on mobile -->
           <div class="hidden sm:block">
-            <ThemeBtn class="border border-[#DFDEE5]" />
+            <ThemeBtn class="border border-[#DFDEE5]" :white-bg="false" />
           </div>
 
           <!-- Mobile menu button -->
@@ -130,7 +130,7 @@ const navigationItems = [
   { name: 'Home', href: '/' },
   { name: 'About Us', href: '/about' },
   { name: 'Services', href: '/services' },
-  { name: 'Case Studies', href: '/case-studies' },
+  { name: 'Portfolio', href: '/portfolio' },
   { name: 'Contact Us', href: '/contact' }
 ]
 

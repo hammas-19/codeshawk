@@ -1,5 +1,5 @@
 <template>
-  <div class="def-container def-margin-full bg-white rounded-3xl def-padding-full relative">
+  <div class="def-container def-margin-full bg-white rounded-3xl def-padding-full relative ">
     <h2
       class="text-center xl:text-[145px] lg:text-[110px] md:text-[87px] sm:text-[50px] text-[35px] uppercase leading-0 absolute inset-0 w-full sm:font-medium font-black text-white xl:-top-[4.8%] lg:-top-[3.7%] md:-top-[2%] sm:-top-[1.4%] -top-2">
       why choose us
