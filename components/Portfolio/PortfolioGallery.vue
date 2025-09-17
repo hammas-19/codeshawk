@@ -1,23 +1,38 @@
 <template>
   <section class="md:py-16 pb-5 md:pb-10 px-4 sm:px-6 lg:px-8">
-    <div class="grid lg:grid-cols-2 mx-auto md:gap-10 gap-5">
-      <div v-for="(project) in props.projects" :key="project.id">
+    <!-- Loading State -->
+    <div v-if="loading" class="flex justify-center items-center py-20">
+      <div class="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+    </div>
+
+    <!-- Error State -->
+    <div v-else-if="error" class="text-center py-20">
+      <p class="text-red-600 text-lg">{{ error }}</p>
+      <button @click="fetchProjects" class="mt-4 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        Retry
+      </button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div v-else class="grid lg:grid-cols-2 mx-auto md:gap-10 gap-5">
+      <div v-for="(project) in projects" :key="project.slug">
         <div class="w-full relative">
           <!-- Gradient Background -->
           <div class="w-full h-full absolute inset-0 md:rounded-[30px] rounded-[18px]" :style="{
-            background: `linear-gradient(135deg, ${project.bgColor}33, ${project.bgColor}44, ${project.bgColor}55)`,
+            background: `linear-gradient(135deg, ${getProjectColor(project.color_code)}33, ${getProjectColor(project.color_code)}44, ${getProjectColor(project.color_code)}55)`,
           }" />
 
           <!-- Main Card -->
           <div
             class="border-2 md:rounded-[30px] rounded-[18px] border-black w-full bg-white hover:bg-transparent backdrop-blur-sm overflow-hidden transition-all duration-300 hover:scale-105 cursor-pointer"
-            :style="{ borderColor: project.bgColor }">
+            :style="{ borderColor: getProjectColor(project.color_code) }" @click="handleProjectClick(project)">
 
             <!-- Header Section -->
             <div class="md:py-10 py-6 md:px-8 px-4">
               <div class="flex justify-between items-center">
                 <div class="flex items-center gap-6">
-                  <img :src="project.logo" :alt="project.title" class="h-12 w-12 object-cover rounded-xl">
+                  <img :src="getImageUrl(project.project_icon)" :alt="project.title"
+                    class="h-12 w-12 object-cover rounded-xl" @error="handleImageError">
                   <h3 class="text-gray-900 font-bold md:text-4xl sm:text-2xl text-lg uppercase">
                     {{ project.title }}
                   </h3>
@@ -38,26 +53,33 @@
             <div class="flex flex-col md:rounded-[18px] rounded-[10px] overflow-hidden w-full">
               <!-- Folder Tab -->
               <div class="flex w-[45%] md:w-[30%] min-h-[40px]">
-                <div class="w-3/2 min-h-full mb-[-1px] rounded-tr-sm" :style="{ backgroundColor: project.bgColor }" />
+                <div class="w-3/2 min-h-full mb-[-1px] rounded-tr-sm"
+                  :style="{ backgroundColor: getProjectColor(project.color_code) }" />
                 <div class="theCurve w-[70px] min-h-full md:ml-[-2px] ml-[-2px] mb-[-1px]"
-                  :style="{ backgroundColor: project.bgColor }" />
+                  :style="{ backgroundColor: getProjectColor(project.color_code) }" />
               </div>
 
               <!-- Main Content Area -->
               <div
                 class="md:min-h-[260px] md:rounded-tr-[18px] rounded-tr-[10px] flex flex-col justify-between md:p-6 p-4 sm:gap-8 gap-5"
-                :style="{ backgroundColor: project.bgColor }">
+                :style="{ backgroundColor: getProjectColor(project.color_code) }">
                 <div class="flex-1">
                   <p class="text-white sm:text-xl text-sm line-clamp-3 leading-relaxed">
-                    {{ project.description }}
+                    {{ project.short_description }}
                   </p>
                 </div>
 
-                <!-- Technology Icons -->
+                <!-- Project Info -->
                 <div class="flex flex-wrap gap-3">
-                  <div v-for="tech in project.technologies" :key="tech.name"
-                    class="bg-white/10 md:p-3 p-2 rounded-2xl flex justify-center items-center backdrop-blur-sm">
-                    <span class="md:text-2xl text-lg">{{ tech.icon }}</span>
+                  <div class="bg-white/10 md:p-3 p-2 rounded-2xl flex justify-center items-center backdrop-blur-sm">
+                    <span class="md:text-sm text-xs text-white font-medium">{{ project.category }}</span>
+                  </div>
+                  <div class="bg-white/10 md:p-3 p-2 rounded-2xl flex justify-center items-center backdrop-blur-sm">
+                    <span class="md:text-sm text-xs text-white font-medium">{{ project.location }}</span>
+                  </div>
+                  <div class="bg-white/10 md:p-3 p-2 rounded-2xl flex justify-center items-center backdrop-blur-sm">
+                    <span class="md:text-sm text-xs text-white font-medium">{{ formatDate(project.project_date)
+                      }}</span>
                   </div>
                 </div>
               </div>
@@ -70,95 +92,116 @@
 </template>
 
 <script setup>
-const props = defineProps({
-  projects: {
-    type: Array,
-    default: () => [
-      {
-        id: 1,
-        title: "E-Commerce Platform",
-        description: "A modern e-commerce solution built with cutting-edge technologies, featuring real-time inventory management, secure payment processing, and an intuitive user interface that drives conversions.",
-        bgColor: "#636EDF",
-        logo: "https://images.unsplash.com/photo-1611224923853-80b023f02d71?q=80&w=100&auto=format&fit=crop",
-        technologies: [
-          { name: "Vue.js", icon: "🟢" },
-          { name: "Node.js", icon: "📗" },
-          { name: "MongoDB", icon: "🍃" },
-          { name: "Stripe", icon: "💳" }
-        ]
-      },
-      {
-        id: 2,
-        title: "Brand Identity System",
-        description: "Complete visual identity redesign for a tech startup, including logo design, brand guidelines, marketing materials, and digital asset optimization across all platforms.",
-        bgColor: "#6b1e3f",
-        logo: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?q=80&w=100&auto=format&fit=crop",
-        technologies: [
-          { name: "Figma", icon: "🎨" },
-          { name: "Illustrator", icon: "✏️" },
-          { name: "Photoshop", icon: "🖼️" },
-          { name: "InDesign", icon: "📄" }
-        ]
-      },
-      {
-        id: 3,
-        title: "Marketing Automation",
-        description: "Comprehensive marketing automation suite that streamlines campaign management, customer segmentation, and performance analytics to boost engagement and ROI.",
-        bgColor: "#4a5d3a",
-        logo: "https://images.unsplash.com/photo-1572021335469-31706a17aaef?q=80&w=100&auto=format&fit=crop",
-        technologies: [
-          { name: "React", icon: "⚛️" },
-          { name: "Python", icon: "🐍" },
-          { name: "PostgreSQL", icon: "🐘" },
-          { name: "Redis", icon: "🔴" }
-        ]
-      },
-      {
-        id: 4,
-        title: "Mobile Health App",
-        description: "Cross-platform mobile application for health tracking and telemedicine consultations, featuring AI-powered symptom analysis and secure patient data management.",
-        bgColor: "#2d4a3e",
-        logo: "https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?q=80&w=100&auto=format&fit=crop",
-        technologies: [
-          { name: "Flutter", icon: "📱" },
-          { name: "Firebase", icon: "🔥" },
-          { name: "TensorFlow", icon: "🧠" },
-          { name: "WebRTC", icon: "📹" }
-        ]
-      },
-      {
-        id: 5,
-        title: "Data Visualization Dashboard",
-        description: "Interactive business intelligence dashboard that transforms complex data into actionable insights through dynamic charts, real-time updates, and customizable reporting.",
-        bgColor: "#1e3a8a",
-        logo: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=100&auto=format&fit=crop",
-        technologies: [
-          { name: "D3.js", icon: "📊" },
-          { name: "TypeScript", icon: "📘" },
-          { name: "Express", icon: "🚀" },
-          { name: "Docker", icon: "🐳" }
-        ]
-      },
-      {
-        id: 6,
-        title: "Content Management System",
-        description: "Headless CMS solution designed for content creators and developers, offering flexible content modeling, API-first architecture, and seamless third-party integrations.",
-        bgColor: "#7c2d12",
-        logo: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=100&auto=format&fit=crop",
-        technologies: [
-          { name: "Next.js", icon: "▲" },
-          { name: "GraphQL", icon: "◉" },
-          { name: "Prisma", icon: "🔷" },
-          { name: "AWS", icon: "☁️" }
-        ]
-      }
-    ]
+import { ref, onMounted } from 'vue'
+
+// API Configuration
+const API_URL = 'http://147.79.100.203/api/projects/'
+
+// Reactive data
+const projects = ref([])
+const loading = ref(true)
+const error = ref(null)
+
+// Base URL for images
+const BASE_URL = 'http://147.79.100.203'
+
+// Color mapping for different color codes
+const colorMap = {
+  red: '#ef4444',
+  blue: '#3b82f6',
+  green: '#10b981',
+  purple: '#8b5cf6',
+  yellow: '#f59e0b',
+  pink: '#ec4899',
+  indigo: '#6366f1',
+  gray: '#6b7280',
+  orange: '#f97316',
+  teal: '#14b8a6'
+}
+
+// Methods
+const fetchProjects = async () => {
+  try {
+    loading.value = true
+    error.value = null
+
+    const response = await fetch(API_URL)
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`)
+    }
+
+    const data = await response.json()
+    projects.value = data
+
+  } catch (err) {
+    error.value = `Failed to load projects: ${err.message}`
+    console.error('Error fetching projects:', err)
+  } finally {
+    loading.value = false
   }
+}
+
+const getImageUrl = (imagePath) => {
+  if (!imagePath) return 'https://via.placeholder.com/100x100?text=No+Image'
+  if (imagePath.startsWith('http')) return imagePath
+  return `${BASE_URL}${imagePath}`
+}
+
+const getProjectColor = (colorCode) => {
+  return colorMap[colorCode?.toLowerCase()] || colorMap.blue
+}
+
+const formatDate = (dateString) => {
+  if (!dateString) return ''
+  const date = new Date(dateString)
+  return date.toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'short'
+  })
+}
+
+const handleProjectClick = (project) => {
+  // Emit event or handle navigation
+  console.log('Project clicked:', project)
+  // You can add your routing logic here
+  // Example: router.push(`/projects/${project.slug}`)
+}
+
+const handleImageError = (event) => {
+  event.target.src = 'https://via.placeholder.com/100x100?text=No+Image'
+}
+
+// Lifecycle
+onMounted(() => {
+  fetchProjects()
+})
+
+// Expose methods for parent component
+defineExpose({
+  fetchProjects,
+  projects
 })
 </script>
 
 <style scoped>
 .theCurve {
   clip-path: polygon(0 0, 0 0, 100% 100%, 0% 100%);
+}
+
+.line-clamp-3 {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.animate-spin {
+  animation: spin 1s linear infinite;
 }
 </style>

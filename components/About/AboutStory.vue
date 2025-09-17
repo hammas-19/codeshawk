@@ -244,9 +244,9 @@ const handleCtaClick = () => {
 }
 
 .inverted-radius {
-  --r: 10px;
+  --r: 13px;
   /* Adjust radius for smaller devices */
-  --s: 25px;
+  --s: 23px;
   /* Adjust size of inner curve */
   --x: 80px;
   /* Adjust horizontal offset */

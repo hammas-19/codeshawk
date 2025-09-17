@@ -16,7 +16,7 @@
           {{ word }}
         </Motion>
       </h1>
-      <div class="my-16 relative">
+      <div class="my-16 relative h-[calc(100vh-400px)] lg:min-h-[600px]">
         <div class="h-[50px] md:w-[340px] w-[175px] absolute bottom-0 md:left-0 right-0  backdrop-blur-lg rounded-2xl  flex items-center md:gap-3 gap-1">
           <div class="flex -space-x-4 rtl:space-x-reverse">
             <img class="md:w-12 w-5 md:h-12 h-5 border-white rounded-full object-cover border-2 border-white"
