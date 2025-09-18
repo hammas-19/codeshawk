@@ -5,8 +5,8 @@
       <div class="text-center mb-16">
         <!-- Badge -->
         <div
-          class="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-600 mb-6 shadow-sm">
-          <span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>
+          class="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-900 mb-6 border">
+          <span class="w-2 h-2 bg-slateBlue rounded-full mr-2"></span>
           Our expert crew
         </div>
 

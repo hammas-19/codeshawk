@@ -1,7 +1,7 @@
 <template>
   <section class="py-20 lg:py-32 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
-    <img src="/Hero/cylinder.webp" class="absolute md:top-1/5 top-2/3 right-1/8 lg:h-40 w-fit md:h-20 h-16"
-      alt="" :style="{
+    <img src="/Hero/cylinder.webp" class="absolute md:top-1/5 top-2/3 right-1/8 lg:h-40 w-fit md:h-20 h-16" alt=""
+      :style="{
         transition: `all ${bounceEase}`,
         transform: polyElementVisible ?
           'translateX(0) translateY(0) rotate(0deg) scale(1)' :
@@ -19,8 +19,8 @@
     <div class="max-w-4xl mx-auto relative z-10 text-center">
       <!-- Badge -->
       <div
-        class="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-700 mb-12 shadow-sm">
-        <span class="w-2 h-2 bg-gray-400 rounded-full mr-2"></span>
+        class="inline-flex items-center px-4 py-2 bg-white rounded-full text-sm font-medium text-gray-900 mb-12 shadow-sm border">
+        <span class="w-2 h-2 bg-slateBlue rounded-full mr-2"></span>
         Hear from customer
       </div>
 
@@ -36,10 +36,10 @@
 
             <!-- Author Info -->
             <div class="space-y-1">
-              <p class="text-lg font-semibold text-gray-900">
+              <p class="text-lg font-semibold text-slateBlue">
                 {{ testimonial.name }}
               </p>
-              <p class="text-gray-600">
+              <p class="text-gray-900">
                 {{ testimonial.position }}
               </p>
             </div>
@@ -51,7 +51,7 @@
       <div class="flex justify-center mt-12 space-x-3">
         <button v-for="(dot, idx) in testimonials" :key="idx" @click="goToSlide(idx)"
           class="w-3 h-3 rounded-full transition-all duration-300"
-          :class="currentSlide === idx ? 'bg-blue-500' : 'bg-gray-300'" />
+          :class="currentSlide === idx ? 'bg-slateBlue' : 'bg-gray-300'" />
       </div>
     </div>
   </section>

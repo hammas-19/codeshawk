@@ -4,8 +4,8 @@
       <!-- Header -->
       <div class="text-center mb-8 sm:mb-12 lg:mb-16">
         <div
-          class="inline-flex items-center px-3 sm:px-4 py-2 bg-blue-100 text-blue-600 rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
-          <span class="w-2 h-2 bg-blue-500 rounded-full mr-2" />
+          class="inline-flex items-center px-3 sm:px-4 py-2 bg-white text-gray-900 border rounded-full text-xs sm:text-sm font-medium mb-4 sm:mb-6">
+          <span class="w-2 h-2 bg-slateBlue rounded-full mr-2" />
           Why choose us
         </div>
         <h2 class="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 leading-tight">

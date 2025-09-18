@@ -10,14 +10,15 @@
           }" :while-hover="{
             y: -5,
             scale: 1.05,
-            color: '#95afb8',
+            color: '#636EDF',
             transition: { duration: 0.2 }
           }">
           {{ word }}
         </Motion>
       </h1>
       <div class="my-16 relative h-[calc(100vh-400px)] lg:min-h-[600px]">
-        <div class="h-[50px] md:w-[340px] w-[175px] absolute bottom-0 md:left-0 right-0  backdrop-blur-lg rounded-2xl  flex items-center md:gap-3 gap-1">
+        <div
+          class="h-[50px] md:w-[340px] w-[175px] absolute bottom-0 md:left-0 right-0  backdrop-blur-lg rounded-2xl  flex items-center md:gap-3 gap-1">
           <div class="flex -space-x-4 rtl:space-x-reverse">
             <img class="md:w-12 w-5 md:h-12 h-5 border-white rounded-full object-cover border-2 border-white"
               src="https://images.unsplash.com/photo-1590098446345-7d26046c81b7?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8UGFraXN0YW5pJTIwcHJvZmlsZSUyMGltYWdlfGVufDB8fDB8fHww"
@@ -33,9 +34,12 @@
               alt="">
           </div>
           <span class=" font-bold text-black md:text-4xl text-sm">2k+</span>
-          <h3 class="text-black md:text-lg text-xs font-medium md:leading-5 leading-3 flex flex-col "><span>Satisfied</span> <span>Customes</span></h3>
+          <h3 class="text-black md:text-lg text-xs font-medium md:leading-5 leading-3 flex flex-col ">
+            <span>Satisfied</span> <span>Customes</span></h3>
         </div>
-        <img src="https://blogger.googleusercontent.com/img/a/AVvXsEgDyNRsYXtClB-DtesRzAL1jmnonqkfJUzmPWFFbEu6vts9o973u3M_lZ21Af-2BImkteF0plrV0uIATpdB_OO5avWbZXDGrABUBVahnAzSO1_7Nnk9nkIrIV0qSmXG04FvTRrv8mkuyJZxOY_EZ-X7YYn3JDzF28uy0H85NVJlLKjK0hJzm_Kz49FzsEI=w640-h360" class="inverted-radius w-full lg:h-full h-[calc(100vh-400px)] lg:max-h-[600px] object-cover" alt="">
+        <img
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhcURMbYcIq888hX9UYsf2yeFjK434NJZtbj2twHpqxAq_vycfivbNmEi1ql3pd3A-d1z1ffmrppahJUIE4hyTRJEsLeZ4W1o7_DR86oTWvN68sEHja20F6eaU5Hl45jpIbHxrmwHTMmhgktHVFRkqQgPAQ3HPV2sEGDst8JtHrI7v_wv_8Gyu7NRVrXQ4/s320/550090217397c11ed0ecc5e1fbd77694-ezgif.com-video-to-gif-converter.gif"
+          class="inverted-radius w-full lg:h-full h-[calc(100vh-400px)] lg:max-h-[600px] object-cover" alt="">
         <!-- <video autoplay loop
           class="inverted-radius border-2 w-full lg:h-full h-[calc(100vh-400px)] lg:max-h-[600px] object-cover">
           <source src="/vdv.mp4" type="video/mp4">
@@ -52,7 +56,7 @@
             }" :while-hover="{
             y: -5,
             scale: 1.05,
-            color: '#95afb8',
+            color: '#636EDF',
             transition: { duration: 0.2 }
           }">
             {{ word }}

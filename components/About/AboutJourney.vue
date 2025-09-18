@@ -44,7 +44,7 @@
               digital presence.
             </p>
 
-            <ThemeBtn :white-bg="false" :white-text="true" :small="true" class="w-full" />
+            <ThemeBtn :white-bg="false" :white-text="true" :to="'/contact'" :small="true" class="w-full" />
 
           </div>
         </div>
@@ -64,7 +64,7 @@
               and unwavering commitment to client success.
             </p>
 
-            <ThemeBtn :white-bg="false" :white-text="true" :small="true" class="w-full" />
+            <ThemeBtn :white-bg="false" :white-text="true" :to="'/contact'" :small="true" class="w-full" />
 
           </div>
         </div>
@@ -83,7 +83,7 @@
               Innovation, Collaboration, Excellence, Integrity, Client-Centricity.
             </p>
 
-            <ThemeBtn :white-bg="false" :white-text="true" :small="true" class="w-full" />
+            <ThemeBtn :white-bg="false" :white-text="true" :to="'/contact'" :small="true" class="w-full" />
 
           </div>
         </div>

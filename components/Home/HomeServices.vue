@@ -244,13 +244,7 @@
 
           <!-- View All Services Button -->
           <div class="pt-6">
-            <button
-              class="inline-flex items-center px-6 py-3 bg-blue-500 hover:bg-blue-600 text-white rounded-full font-medium transition-colors">
-              <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-              </svg>
-              View All Services
-            </button>
+            <ThemeBtn class="md:block hidden" :to="'/services'" :text="'View All Services'" />
           </div>
         </div>
       </div>

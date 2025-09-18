@@ -7,8 +7,8 @@
           Key Differentiators
         </h2>
         <div>
-          <ThemeBtn class="md:block hidden" :text="'Learn More'" />
-          <ThemeBtn class="md:hidden block self-end place-self-end" :small="true" :text="'Learn More'" />
+          <ThemeBtn class="md:block hidden" :to="'/contact'" :text="'Learn More'" />
+          <ThemeBtn class="md:hidden block self-end place-self-end" :small="true" :to="'/contact'" :text="'Learn More'" />
         </div>
       </div>
 
@@ -29,7 +29,7 @@
         </div>
         <!-- Card 4: Free Advice -->
          <div class="h-full relative">
-          <ThemeBtn :small="true" class="absolute bottom-0 right-0" />
+          <ThemeBtn :small="true" :to="'/contact'" class="absolute bottom-0 right-0" />
            <div class=" bg-slateBlue inverted-radius flex items-end justify-center relative z-0">
             <div class="mt-5 absolute inset-0 w-full flex flex-col md:px-5 px-4">
               <span class="flex items-center gap-2 text-white">

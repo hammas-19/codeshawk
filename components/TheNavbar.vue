@@ -43,7 +43,7 @@
         <div class="flex items-center space-x-2 sm:space-x-4">
           <!-- Theme Button - Hidden on mobile -->
           <div class="hidden sm:block">
-            <ThemeBtn class="border border-[#DFDEE5]" :white-bg="false" />
+            <ThemeBtn class="border border-[#DFDEE5]" :white-bg="false" :to="'/contact'" />
           </div>
 
           <!-- Mobile menu button -->

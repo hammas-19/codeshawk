@@ -29,7 +29,7 @@
           <h3 class="md:text-[32px] text-2xl  mb-4 text-black">{{ service.title }}</h3>
           <p class="text-darkLiver text-sm">{{ service.description }}</p>
           <hr class="my-10 text-[#DFDEE5]">
-          <ThemeBtn :text="'Learn More'" :small="true" :white-bg="false" />
+          <ThemeBtn :text="'Learn More'" :to="'/contact'" :small="true" :white-bg="false" />
         </div>
       </div>
     </div>
